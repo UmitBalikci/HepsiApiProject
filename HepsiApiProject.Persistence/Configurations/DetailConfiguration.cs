@@ -1,4 +1,5 @@
-﻿using HepsiApiProject.Domain.Entities;
+﻿using Bogus;
+using HepsiApiProject.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -13,7 +14,39 @@ namespace HepsiApiProject.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Detail> builder)
         {
-            throw new NotImplementedException();
+            Faker faker = new("tr");
+
+            Detail detail1 = new()
+            {
+                Id = 1,
+                Title = faker.Lorem.Sentence(1),
+                Description = faker.Lorem.Sentence(5),
+                CategoryId = 1,
+                CreatedDate = DateTime.Now,
+                isDeleted = false,
+            };
+
+            Detail detail2 = new()
+            {
+                Id = 2,
+                Title = faker.Lorem.Sentence(1),
+                Description = faker.Lorem.Sentence(5),
+                CategoryId = 3,
+                CreatedDate = DateTime.Now,
+                isDeleted = true,
+            };
+
+            Detail detail3 = new()
+            {
+                Id = 3,
+                Title = faker.Lorem.Sentence(1),
+                Description = faker.Lorem.Sentence(5),
+                CategoryId = 4,
+                CreatedDate = DateTime.Now,
+                isDeleted = false,
+            };
+
+            builder.HasData(detail1, detail2, detail3);
         }
     }
 }
