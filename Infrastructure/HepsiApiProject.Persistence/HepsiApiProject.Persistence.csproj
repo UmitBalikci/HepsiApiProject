@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HepsiApiProject.Domain\HepsiApiProject.Domain.csproj" />
+    <ProjectReference Include="..\..\Core\HepsiApiProject.Domain\HepsiApiProject.Domain.csproj" />
   </ItemGroup>
 
 </Project>
