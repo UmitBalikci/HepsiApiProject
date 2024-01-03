@@ -1,4 +1,6 @@
-﻿using HepsiApiProject.Persistence.Context;
+﻿using HepsiApiProject.Application.Interfaces.Repositories;
+using HepsiApiProject.Persistence.Context;
+using HepsiApiProject.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,8 @@ namespace HepsiApiProject.Persistence
         public static void AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("SQLServer")));
+
+            services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
         }
     }
 }
