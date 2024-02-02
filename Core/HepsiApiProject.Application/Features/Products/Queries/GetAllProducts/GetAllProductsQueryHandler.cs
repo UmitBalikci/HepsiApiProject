@@ -16,10 +16,10 @@ namespace HepsiApiProject.Application.Features.Products.Queries.GetAllProducts
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public GetAllProductsQueryHandler(IUnitOfWork unitOfWork, IMapper IMapper)
+        public GetAllProductsQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _mapper = IMapper;
+            _mapper = mapper;
         }
         public async Task<IList<GetAllProductsQueryResponse>> Handle(GetAllProductsQueryRequest request, CancellationToken cancellationToken)
         {

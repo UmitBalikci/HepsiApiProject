@@ -23,7 +23,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Description = faker.Lorem.Sentence(5),
                 CategoryId = 1,
                 CreatedDate = DateTime.Now,
-                isDeleted = false,
+                IsDeleted = false,
             };
 
             Detail detail2 = new()
@@ -33,7 +33,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Description = faker.Lorem.Sentence(5),
                 CategoryId = 3,
                 CreatedDate = DateTime.Now,
-                isDeleted = true,
+                IsDeleted = true,
             };
 
             Detail detail3 = new()
@@ -43,7 +43,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Description = faker.Lorem.Sentence(5),
                 CategoryId = 4,
                 CreatedDate = DateTime.Now,
-                isDeleted = false,
+                IsDeleted = false,
             };
 
             builder.HasData(detail1, detail2, detail3);

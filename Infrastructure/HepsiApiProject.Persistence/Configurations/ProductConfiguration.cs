@@ -25,7 +25,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Discount = faker.Random.Decimal(0, 10),
                 Price = faker.Finance.Amount(10, 1000),
                 CreatedDate = DateTime.Now,
-                isDeleted = false,
+                IsDeleted = false,
             };
 
             Product product2 = new()
@@ -37,7 +37,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Discount = faker.Random.Decimal(0, 10),
                 Price = faker.Finance.Amount(10, 1000),
                 CreatedDate = DateTime.Now,
-                isDeleted = false,
+                IsDeleted = false,
             };
 
             Product product3 = new()
@@ -49,7 +49,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Discount = faker.Random.Decimal(0, 10),
                 Price = faker.Finance.Amount(10, 1000),
                 CreatedDate = DateTime.Now,
-                isDeleted = false,
+                IsDeleted = false,
             };
 
             builder.HasData(product1, product2, product3);

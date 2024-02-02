@@ -10,6 +10,6 @@ namespace HepsiApiProject.Domain.Common
     {
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }
-        public bool isDeleted { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
