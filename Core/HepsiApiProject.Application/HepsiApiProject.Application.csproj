@@ -15,8 +15,4 @@
     <ProjectReference Include="..\HepsiApiProject.Domain\HepsiApiProject.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Products\Commands\" />
-  </ItemGroup>
-
 </Project>
