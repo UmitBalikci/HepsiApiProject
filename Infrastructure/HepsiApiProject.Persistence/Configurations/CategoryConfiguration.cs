@@ -19,7 +19,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Name = "Elektronik",
                 Priorty = 1,
                 ParentId = 0,
-                isDeleted = false,
+                IsDeleted = false,
                 CreatedDate = DateTime.Now,
             };
 
@@ -29,7 +29,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Name = "Moda",
                 Priorty = 2,
                 ParentId = 0,
-                isDeleted = false,
+                IsDeleted = false,
                 CreatedDate = DateTime.Now,
             };
 
@@ -39,7 +39,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Name = "Bilgisayar",
                 Priorty = 1,
                 ParentId = 1,
-                isDeleted = false,
+                IsDeleted = false,
                 CreatedDate = DateTime.Now,
             };
 
@@ -49,7 +49,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Name = "Kadın",
                 Priorty = 1,
                 ParentId = 2,
-                isDeleted = false,
+                IsDeleted = false,
                 CreatedDate = DateTime.Now,
             };
 

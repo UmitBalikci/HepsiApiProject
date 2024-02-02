@@ -23,7 +23,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Id = 1,
                 Name = faker.Commerce.Department(),
                 CreatedDate = DateTime.Now,
-                isDeleted = false,
+                IsDeleted = false,
             };
 
             Brand brand2 = new()
@@ -31,7 +31,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Id = 2,
                 Name = faker.Commerce.Department(),
                 CreatedDate = DateTime.Now,
-                isDeleted = false,
+                IsDeleted = false,
             };
 
             Brand brand3 = new()
@@ -39,7 +39,7 @@ namespace HepsiApiProject.Persistence.Configurations
                 Id = 3,
                 Name = faker.Commerce.Department(),
                 CreatedDate = DateTime.Now,
-                isDeleted = false,
+                IsDeleted = false,
             };
 
             builder.HasData(brand1, brand2, brand3);
