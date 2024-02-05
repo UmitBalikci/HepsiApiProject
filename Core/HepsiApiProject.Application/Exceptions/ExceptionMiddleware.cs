@@ -19,8 +19,7 @@ namespace HepsiApiProject.Application.Exceptions
             }
             catch (Exception ex)
             {
-
-                throw;
+                await HandleExceptionAsync(httpContext, ex);
             }
         }
 
@@ -32,8 +31,8 @@ namespace HepsiApiProject.Application.Exceptions
 
             List<string> errors = new()
             {
-                exception.Message,
-                exception.InnerException.ToString()
+                $"Hata Mesajı : {exception.Message}",
+                $"Mesaj Açıklaması : {exception.InnerException?.ToString()}"
             };
 
             return httpContext.Response.WriteAsync(new ExceptionModel
