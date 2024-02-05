@@ -1,6 +1,7 @@
 using HepsiApiProject.Application;
 using HepsiApiProject.Persistence;
 using HepsiApiProject.Mapper;
+using HepsiApiProject.Application.Exceptions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,6 +25,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.ConfigureExceptionHandlingMiddleware();
 
 app.UseAuthorization();
 
