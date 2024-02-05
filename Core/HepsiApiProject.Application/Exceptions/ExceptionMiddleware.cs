@@ -9,37 +9,47 @@ using System.Threading.Tasks;
 
 namespace HepsiApiProject.Application.Exceptions
 {
-	public class ExceptionMiddleware : IMiddleware
-	{
-		public async Task InvokeAsync(HttpContext httpContext, RequestDelegate next)
-		{
-			try
-			{
-				await next(httpContext);
-			}
-			catch (Exception ex)
-			{
+    public class ExceptionMiddleware : IMiddleware
+    {
+        public async Task InvokeAsync(HttpContext httpContext, RequestDelegate next)
+        {
+            try
+            {
+                await next(httpContext);
+            }
+            catch (Exception ex)
+            {
 
-				throw;
-			}
-		}
+                throw;
+            }
+        }
 
-		private static Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
-		{
-			int statusCode = GetStatusCode(exception);
-			httpContext.Response.ContentType = "application/json";
-			httpContext.Response.StatusCode = statusCode;
+        private static Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
+        {
+            int statusCode = GetStatusCode(exception);
+            httpContext.Response.ContentType = "application/json";
+            httpContext.Response.StatusCode = statusCode;
 
+            List<string> errors = new()
+            {
+                exception.Message,
+                exception.InnerException.ToString()
+            };
 
-		}
+            return httpContext.Response.WriteAsync(new ExceptionModel
+            {
+                Errors = errors,
+                StatusCode = statusCode
+            }.ToString());
+        }
 
-		private static int GetStatusCode(Exception exception) =>
-			exception switch
-			{
-				BadRequestException => StatusCodes.Status400BadRequest,
-				NotFoundException => StatusCodes.Status404NotFound,
-				ValidationException => StatusCodes.Status422UnprocessableEntity,
-				_ => StatusCodes.Status500InternalServerError
-			};
+        private static int GetStatusCode(Exception exception) =>
+            exception switch
+            {
+                BadRequestException => StatusCodes.Status400BadRequest,
+                NotFoundException => StatusCodes.Status404NotFound,
+                ValidationException => StatusCodes.Status422UnprocessableEntity,
+                _ => StatusCodes.Status500InternalServerError
+            };
     }
 }
