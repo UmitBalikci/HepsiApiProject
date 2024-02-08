@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HepsiApiProject.Application.Features.Products.Commands.UpdateProduct
 {
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest>
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest, Unit>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -19,7 +19,7 @@ namespace HepsiApiProject.Application.Features.Products.Commands.UpdateProduct
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
         {
             var product = await _unitOfWork.GetReadRepository<Product>().GetAsync(x => x.Id == request.Id && !x.IsDeleted);
 
@@ -39,6 +39,8 @@ namespace HepsiApiProject.Application.Features.Products.Commands.UpdateProduct
 
             await _unitOfWork.GetWriteRepository<Product>().UpdateAsync(map);
             await _unitOfWork.SaveAsync();
+
+            return Unit.Value;
         }
     }
 }

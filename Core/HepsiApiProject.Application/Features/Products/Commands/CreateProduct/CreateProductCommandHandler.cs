@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace HepsiApiProject.Application.Features.Products.Commands.CreateProduct
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest, Unit>
     {
         private readonly IUnitOfWork _unitOfWork;
         public CreateProductCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
             Product product = new(request.Title, request.Description, request.BrandId, request.Price, request.Discount);
 
@@ -35,6 +35,7 @@ namespace HepsiApiProject.Application.Features.Products.Commands.CreateProduct
                 await _unitOfWork.SaveAsync();
             }
 
+            return Unit.Value;
         }
     }
 }
