@@ -1,4 +1,5 @@
-﻿using HepsiApiProject.Application.Interfaces.UnitOfWorks;
+﻿using HepsiApiProject.Application.Features.Products.Rules;
+using HepsiApiProject.Application.Interfaces.UnitOfWorks;
 using HepsiApiProject.Domain.Entities;
 using MediatR;
 using System;
@@ -12,12 +13,18 @@ namespace HepsiApiProject.Application.Features.Products.Commands.CreateProduct
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest, Unit>
     {
         private readonly IUnitOfWork _unitOfWork;
-        public CreateProductCommandHandler(IUnitOfWork unitOfWork)
+        private readonly ProductRules _productRules;
+        public CreateProductCommandHandler(IUnitOfWork unitOfWork, ProductRules productRules)
         {
             _unitOfWork = unitOfWork;
+            _productRules = productRules;
         }
         public async Task<Unit> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
+            var products = await _unitOfWork.GetReadRepository<Product>().GetAllAsync();
+
+            await _productRules.ProductTitle(products, request.Title);
+
             Product product = new(request.Title, request.Description, request.BrandId, request.Price, request.Discount);
 
             await _unitOfWork.GetWriteRepository<Product>().AddAsync(product);
