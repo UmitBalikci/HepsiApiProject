@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace HepsiApiProject.Domain.Entities
 {
-    public class User : IdentityUser<Guid>
+    public class Role : IdentityRole<Guid>
     {
-        public string FullName { get; set; }
-        public string? RefreshToken { get; set; }
-        public DateTime? RefreshTokenExpiryDate { get; set; }
+        
     }
 }
