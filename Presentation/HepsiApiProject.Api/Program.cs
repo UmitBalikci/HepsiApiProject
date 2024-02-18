@@ -1,6 +1,7 @@
 using HepsiApiProject.Application;
 using HepsiApiProject.Persistence;
 using HepsiApiProject.Mapper;
+using HepsiApiProject.Infrastructure;
 using HepsiApiProject.Application.Exceptions;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddCustomMapper();
 
