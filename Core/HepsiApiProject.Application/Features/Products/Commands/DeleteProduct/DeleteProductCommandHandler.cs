@@ -1,6 +1,9 @@
-﻿using HepsiApiProject.Application.Interfaces.UnitOfWorks;
+﻿using HepsiApiProject.Application.Bases;
+using HepsiApiProject.Application.Interfaces.AutoMapper;
+using HepsiApiProject.Application.Interfaces.UnitOfWorks;
 using HepsiApiProject.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +12,10 @@ using System.Threading.Tasks;
 
 namespace HepsiApiProject.Application.Features.Products.Commands.DeleteProduct
 {
-    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommandRequest, Unit>
+    public class DeleteProductCommandHandler : BaseHandler, IRequestHandler<DeleteProductCommandRequest, Unit>
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public DeleteProductCommandHandler(IUnitOfWork unitOfWork)
+        public DeleteProductCommandHandler(IMapper mapper, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor) : base(mapper, unitOfWork, httpContextAccessor)
         {
-            _unitOfWork = unitOfWork;
         }
         public async Task<Unit> Handle(DeleteProductCommandRequest request, CancellationToken cancellationToken)
         {
