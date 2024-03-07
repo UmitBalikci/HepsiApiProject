@@ -17,5 +17,12 @@ namespace HepsiApiProject.Application.Features.Auth.Rules
             if (user is not null) throw new UserAlreadyExistException();
             return Task.CompletedTask;
         }
+
+        public Task EmailOrPasswordShouldNotBeInvalid(User? user, bool checjPassword)
+        {
+            if (user is null || !checjPassword) throw new EmailOrPasswordShouldNotBeInvalidException();
+            
+            return Task.CompletedTask;
+        }
     }
 }
