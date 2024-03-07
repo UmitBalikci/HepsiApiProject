@@ -24,5 +24,12 @@ namespace HepsiApiProject.Application.Features.Auth.Rules
             
             return Task.CompletedTask;
         }
+
+        public Task RefreshTokenShouldNotBeExpired(DateTime? expiryDate)
+        {
+            if (expiryDate <= DateTime.Now) throw new RefreshTokenShouldNotBeExpiredException();
+
+            return Task.CompletedTask;
+        }
     }
 }
