@@ -1,4 +1,5 @@
-﻿using HepsiApiProject.Application.Features.Auth.Commands.Register;
+﻿using HepsiApiProject.Application.Features.Auth.Commands.Login;
+using HepsiApiProject.Application.Features.Auth.Commands.Register;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +17,18 @@ namespace HepsiApiProject.Api.Controllers
             _mediator = mediator;
         }
 
+        [HttpPost]
         public async Task<IActionResult> Register(RegisterCommandRequest request)
         {
             await _mediator.Send(request);
             return StatusCode(StatusCodes.Status201Created);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginCommandRequest request)
+        {
+            var result = await _mediator.Send(request);
+            return StatusCode(StatusCodes.Status200OK, result);
         }
     }
 }
