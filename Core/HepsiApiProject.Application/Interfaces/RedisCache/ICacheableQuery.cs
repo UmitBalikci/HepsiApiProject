@@ -8,7 +8,7 @@ namespace HepsiApiProject.Application.Interfaces.RedisCache
 {
     public interface ICacheableQuery
     {
-        string CacheKey { get; set; }
-        double CacheTime { get; set; }
+        string CacheKey { get; }
+        double CacheTime { get;}
     }
 }
